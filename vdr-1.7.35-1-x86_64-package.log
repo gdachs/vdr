@@ -1,0 +1,78 @@
+*** Plugin dvbhddevice:
+make[1]: Nothing to be done for `all'.
+*** Plugin dvbsddevice:
+make[1]: Nothing to be done for `all'.
+*** Plugin epgtableid0:
+make[1]: Nothing to be done for `all'.
+*** Plugin hello:
+make[1]: Nothing to be done for `all'.
+*** Plugin osddemo:
+make[1]: Nothing to be done for `all'.
+*** Plugin pictures:
+make[1]: Nothing to be done for `all'.
+*** Plugin rcu:
+make[1]: Nothing to be done for `all'.
+*** Plugin servicedemo:
+make[1]: Nothing to be done for `all'.
+*** Plugin skincurses:
+make[1]: Nothing to be done for `all'.
+*** Plugin status:
+make[1]: Nothing to be done for `all'.
+*** Plugin svdrpdemo:
+make[1]: Nothing to be done for `all'.
+install -D libvdr-dvbhddevice.so /build/pkg/usr/lib/vdr/plugins/libvdr-dvbhddevice.so.1.7.35
+install -D -m644 po/fi_FI.mo /build/pkg/usr/share/locale/fi_FI/LC_MESSAGES/vdr-dvbhddevice.mo
+install -D -m644 po/it_IT.mo /build/pkg/usr/share/locale/it_IT/LC_MESSAGES/vdr-dvbhddevice.mo
+install -D -m644 po/de_DE.mo /build/pkg/usr/share/locale/de_DE/LC_MESSAGES/vdr-dvbhddevice.mo
+install -D libvdr-dvbsddevice.so /build/pkg/usr/lib/vdr/plugins/libvdr-dvbsddevice.so.1.7.35
+install -D libvdr-epgtableid0.so /build/pkg/usr/lib/vdr/plugins/libvdr-epgtableid0.so.1.7.35
+install -D libvdr-hello.so /build/pkg/usr/lib/vdr/plugins/libvdr-hello.so.1.7.35
+install -D -m644 po/pt_PT.mo /build/pkg/usr/share/locale/pt_PT/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/pl_PL.mo /build/pkg/usr/share/locale/pl_PL/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/ro_RO.mo /build/pkg/usr/share/locale/ro_RO/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/et_EE.mo /build/pkg/usr/share/locale/et_EE/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/fi_FI.mo /build/pkg/usr/share/locale/fi_FI/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/tr_TR.mo /build/pkg/usr/share/locale/tr_TR/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/da_DK.mo /build/pkg/usr/share/locale/da_DK/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/es_ES.mo /build/pkg/usr/share/locale/es_ES/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/sl_SI.mo /build/pkg/usr/share/locale/sl_SI/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/it_IT.mo /build/pkg/usr/share/locale/it_IT/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/nn_NO.mo /build/pkg/usr/share/locale/nn_NO/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/el_GR.mo /build/pkg/usr/share/locale/el_GR/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/sv_SE.mo /build/pkg/usr/share/locale/sv_SE/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/cs_CZ.mo /build/pkg/usr/share/locale/cs_CZ/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/lt_LT.mo /build/pkg/usr/share/locale/lt_LT/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/fr_FR.mo /build/pkg/usr/share/locale/fr_FR/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/sk_SK.mo /build/pkg/usr/share/locale/sk_SK/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/nl_NL.mo /build/pkg/usr/share/locale/nl_NL/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/hr_HR.mo /build/pkg/usr/share/locale/hr_HR/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/ru_RU.mo /build/pkg/usr/share/locale/ru_RU/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/hu_HU.mo /build/pkg/usr/share/locale/hu_HU/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/ca_ES.mo /build/pkg/usr/share/locale/ca_ES/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/zh_CN.mo /build/pkg/usr/share/locale/zh_CN/LC_MESSAGES/vdr-hello.mo
+install -D -m644 po/de_DE.mo /build/pkg/usr/share/locale/de_DE/LC_MESSAGES/vdr-hello.mo
+install -D libvdr-osddemo.so /build/pkg/usr/lib/vdr/plugins/libvdr-osddemo.so.1.7.35
+install -D libvdr-pictures.so /build/pkg/usr/lib/vdr/plugins/libvdr-pictures.so.1.7.35
+install -D -m644 po/fi_FI.mo /build/pkg/usr/share/locale/fi_FI/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/it_IT.mo /build/pkg/usr/share/locale/it_IT/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/lt_LT.mo /build/pkg/usr/share/locale/lt_LT/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/fr_FR.mo /build/pkg/usr/share/locale/fr_FR/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/ru_RU.mo /build/pkg/usr/share/locale/ru_RU/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/sk_SK.mo /build/pkg/usr/share/locale/sk_SK/LC_MESSAGES/vdr-pictures.mo
+install -D -m644 po/de_DE.mo /build/pkg/usr/share/locale/de_DE/LC_MESSAGES/vdr-pictures.mo
+install -D libvdr-rcu.so /build/pkg/usr/lib/vdr/plugins/libvdr-rcu.so.1.7.35
+install -D libvdr-svccli.so /build/pkg/usr/lib/vdr/plugins/libvdr-svccli.so.1.7.35
+install -D libvdr-svcsvr.so /build/pkg/usr/lib/vdr/plugins/libvdr-svcsvr.so.1.7.35
+install -D libvdr-skincurses.so /build/pkg/usr/lib/vdr/plugins/libvdr-skincurses.so.1.7.35
+install -D -m644 po/fi_FI.mo /build/pkg/usr/share/locale/fi_FI/LC_MESSAGES/vdr-skincurses.mo
+install -D -m644 po/it_IT.mo /build/pkg/usr/share/locale/it_IT/LC_MESSAGES/vdr-skincurses.mo
+install -D -m644 po/lt_LT.mo /build/pkg/usr/share/locale/lt_LT/LC_MESSAGES/vdr-skincurses.mo
+install -D -m644 po/ru_RU.mo /build/pkg/usr/share/locale/ru_RU/LC_MESSAGES/vdr-skincurses.mo
+install -D -m644 po/sk_SK.mo /build/pkg/usr/share/locale/sk_SK/LC_MESSAGES/vdr-skincurses.mo
+install -D -m644 po/de_DE.mo /build/pkg/usr/share/locale/de_DE/LC_MESSAGES/vdr-skincurses.mo
+install -D libvdr-status.so /build/pkg/usr/lib/vdr/plugins/libvdr-status.so.1.7.35
+install -D libvdr-svdrpdemo.so /build/pkg/usr/lib/vdr/plugins/libvdr-svdrpdemo.so.1.7.35
+if [ -n "/usr/lib/pkgconfig" ] ; then \
+    mkdir -p /build/pkg/usr/lib/pkgconfig ; \
+    cp vdr.pc /build/pkg/usr/lib/pkgconfig ; \
+    fi

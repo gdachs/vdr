@@ -1,0 +1,306 @@
+patching file menu.c
+Hunk #1 succeeded at 3362 (offset 389 lines).
+Hunk #2 succeeded at 3494 (offset 382 lines).
+Hunk #3 succeeded at 3573 (offset 382 lines).
+patching file config.h
+Hunk #1 succeeded at 36 with fuzz 1.
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   audio.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   channels.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   ci.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   config.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   cutter.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   device.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   diseqc.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   dvbdevice.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   dvbci.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   dvbplayer.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   dvbspu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   dvbsubtitle.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   eit.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   eitscan.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   epg.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   filter.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   font.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   i18n.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   interface.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   keys.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   lirc.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   menu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   menuitems.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   nit.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   osdbase.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   osd.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   pat.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   player.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   plugin.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   receiver.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   recorder.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   recording.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   remote.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   remux.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   ringbuffer.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   sdt.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   sections.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   shutdown.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   skinclassic.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   skinlcars.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   skins.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   skinsttng.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   sourceparams.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   sources.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   spu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   status.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   svdrp.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   themes.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   thread.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   timers.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   tools.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   transfer.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   vdr.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DREMOTE_KBD -DVDR_USER=\"vdr\" -DLIRC_DEVICE=\"/var/run/lirc/lircd\" -DVIDEODIR=\"/srv/vdr/video\" -DCONFDIR=\"/var/lib/vdr\" -DCACHEDIR=\"/var/cache/vdr\" -DRESDIR=\"/usr/share/vdr\" -DPLUGINDIR=\"/usr/lib/vdr/plugins\" -DLOCDIR=\"/usr/share/locale\" -I/usr/include/freetype2   videodir.c
+make --no-print-directory -C ./libsi CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include" DEFINES="-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE" all
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  util.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  si.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  section.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -c -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE  descriptor.c
+ar rv libsi.a util.o si.o section.o descriptor.o
+ar: creating libsi.a
+a - util.o
+a - si.o
+a - section.o
+a - descriptor.o
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -rdynamic -Wl,-O1,--sort-common,--as-needed,-z,relro audio.o channels.o ci.o config.o cutter.o device.o diseqc.o dvbdevice.o dvbci.o dvbplayer.o dvbspu.o dvbsubtitle.o eit.o eitscan.o epg.o filter.o font.o i18n.o interface.o keys.o lirc.o menu.o menuitems.o nit.o osdbase.o osd.o pat.o player.o plugin.o receiver.o recorder.o recording.o remote.o remux.o ringbuffer.o sdt.o sections.o shutdown.o skinclassic.o skinlcars.o skins.o skinsttng.o sourceparams.o sources.o spu.o status.o svdrp.o themes.o thread.o timers.o tools.o transfer.o vdr.o videodir.o -ljpeg -lpthread -ldl -lcap -lrt -lfreetype -lfontconfig   ./libsi/libsi.a -o vdr
+xgettext -C -cTRANSLATORS --no-wrap --no-location -k -ktr -ktrNOOP --package-name=VDR --package-version=1.7.35 --msgid-bugs-address='<vdr-bugs@tvdr.de>' -o po/vdr.pot `ls i18n.c tools.c svdrp.c skins.c menu.c shutdown.c sections.c cutter.c ci.c pat.c eit.c dvbci.c channels.c skinsttng.c osdbase.c menuitems.c filter.c sources.c themes.c timers.c thread.c sourceparams.c sdt.c remote.c keys.c remux.c osd.c diseqc.c interface.c dvbplayer.c config.c nit.c eitscan.c player.c plugin.c videodir.c vdr.c spu.c audio.c device.c epg.c dvbdevice.c receiver.c dvbspu.c recorder.c ringbuffer.c font.c dvbsubtitle.c recording.c skinlcars.c transfer.c lirc.c status.c skinclassic.c`
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/pt_PT.po po/vdr.pot
+msgfmt -c -o po/pt_PT.mo po/pt_PT.po
+cp po/pt_PT.mo locale/pt_PT/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/pl_PL.po po/vdr.pot
+msgfmt -c -o po/pl_PL.mo po/pl_PL.po
+cp po/pl_PL.mo locale/pl_PL/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ro_RO.po po/vdr.pot
+msgfmt -c -o po/ro_RO.mo po/ro_RO.po
+cp po/ro_RO.mo locale/ro_RO/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/et_EE.po po/vdr.pot
+msgfmt -c -o po/et_EE.mo po/et_EE.po
+cp po/et_EE.mo locale/et_EE/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ca_ES.po po/vdr.pot
+msgfmt -c -o po/ca_ES.mo po/ca_ES.po
+cp po/ca_ES.mo locale/ca_ES/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fi_FI.po po/vdr.pot
+msgfmt -c -o po/fi_FI.mo po/fi_FI.po
+cp po/fi_FI.mo locale/fi_FI/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/tr_TR.po po/vdr.pot
+msgfmt -c -o po/tr_TR.mo po/tr_TR.po
+cp po/tr_TR.mo locale/tr_TR/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/da_DK.po po/vdr.pot
+msgfmt -c -o po/da_DK.mo po/da_DK.po
+cp po/da_DK.mo locale/da_DK/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/es_ES.po po/vdr.pot
+msgfmt -c -o po/es_ES.mo po/es_ES.po
+cp po/es_ES.mo locale/es_ES/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sl_SI.po po/vdr.pot
+msgfmt -c -o po/sl_SI.mo po/sl_SI.po
+cp po/sl_SI.mo locale/sl_SI/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/it_IT.po po/vdr.pot
+msgfmt -c -o po/it_IT.mo po/it_IT.po
+cp po/it_IT.mo locale/it_IT/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/nn_NO.po po/vdr.pot
+msgfmt -c -o po/nn_NO.mo po/nn_NO.po
+cp po/nn_NO.mo locale/nn_NO/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/el_GR.po po/vdr.pot
+msgfmt -c -o po/el_GR.mo po/el_GR.po
+cp po/el_GR.mo locale/el_GR/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/lt_LT.po po/vdr.pot
+msgfmt -c -o po/lt_LT.mo po/lt_LT.po
+cp po/lt_LT.mo locale/lt_LT/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sv_SE.po po/vdr.pot
+msgfmt -c -o po/sv_SE.mo po/sv_SE.po
+cp po/sv_SE.mo locale/sv_SE/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fr_FR.po po/vdr.pot
+msgfmt -c -o po/fr_FR.mo po/fr_FR.po
+cp po/fr_FR.mo locale/fr_FR/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/cs_CZ.po po/vdr.pot
+msgfmt -c -o po/cs_CZ.mo po/cs_CZ.po
+cp po/cs_CZ.mo locale/cs_CZ/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/mk_MK.po po/vdr.pot
+msgfmt -c -o po/mk_MK.mo po/mk_MK.po
+cp po/mk_MK.mo locale/mk_MK/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/uk_UA.po po/vdr.pot
+msgfmt -c -o po/uk_UA.mo po/uk_UA.po
+cp po/uk_UA.mo locale/uk_UA/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ar.po po/vdr.pot
+msgfmt -c -o po/ar.mo po/ar.po
+cp po/ar.mo locale/ar/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sk_SK.po po/vdr.pot
+msgfmt -c -o po/sk_SK.mo po/sk_SK.po
+cp po/sk_SK.mo locale/sk_SK/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/nl_NL.po po/vdr.pot
+msgfmt -c -o po/nl_NL.mo po/nl_NL.po
+cp po/nl_NL.mo locale/nl_NL/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/hr_HR.po po/vdr.pot
+msgfmt -c -o po/hr_HR.mo po/hr_HR.po
+cp po/hr_HR.mo locale/hr_HR/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ru_RU.po po/vdr.pot
+msgfmt -c -o po/ru_RU.mo po/ru_RU.po
+cp po/ru_RU.mo locale/ru_RU/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/hu_HU.po po/vdr.pot
+msgfmt -c -o po/hu_HU.mo po/hu_HU.po
+cp po/hu_HU.mo locale/hu_HU/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/zh_CN.po po/vdr.pot
+msgfmt -c -o po/zh_CN.mo po/zh_CN.po
+cp po/zh_CN.mo locale/zh_CN/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/de_DE.po po/vdr.pot
+msgfmt -c -o po/de_DE.mo po/de_DE.po
+cp po/de_DE.mo locale/de_DE/LC_MESSAGES/vdr.mo
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sr_SR.po po/vdr.pot
+msgfmt -c -o po/sr_SR.mo po/sr_SR.po
+cp po/sr_SR.mo locale/sr_SR/LC_MESSAGES/vdr.mo
+*** Plugin dvbhddevice:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include dvbhddevice.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include dvbhdffdevice.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include hdffcmd.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include hdffosd.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include menu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbhddevice"' -I/include setup.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include bitbuffer.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_av.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_base.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_generic.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_hdmi.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_mux.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_osd.c
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c  -I/include hdffcmd_remote.c
+ar rv libhdffcmd.a bitbuffer.o hdffcmd_av.o hdffcmd_base.o hdffcmd_generic.o hdffcmd_hdmi.o hdffcmd_mux.o hdffcmd_osd.o hdffcmd_remote.o
+ar: creating libhdffcmd.a
+a - bitbuffer.o
+a - hdffcmd_av.o
+a - hdffcmd_base.o
+a - hdffcmd_generic.o
+a - hdffcmd_hdmi.o
+a - hdffcmd_mux.o
+a - hdffcmd_osd.o
+a - hdffcmd_remote.o
+cc -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -I/build/src/vdr-1.7.35/include -fPIC -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -fPIC -shared -o libhdffcmd-0.1.0.so bitbuffer.o hdffcmd_av.o hdffcmd_base.o hdffcmd_generic.o hdffcmd_hdmi.o hdffcmd_mux.o hdffcmd_osd.o hdffcmd_remote.o
+ln -sf libhdffcmd-0.1.0.so libhdffcmd.so
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -shared dvbhddevice.o dvbhdffdevice.o hdffcmd.o hdffosd.o menu.o setup.o libhdffcmd/libhdffcmd.a -o libvdr-dvbhddevice.so
+xgettext -C -cTRANSLATORS --no-wrap --no-location -k -ktr -ktrNOOP --package-name=vdr-dvbhddevice --package-version=0.0.5 --msgid-bugs-address='<see README>' -o po/dvbhddevice.pot `ls hdffosd.c setup.c dvbhdffdevice.c dvbhddevice.c menu.c hdffcmd.c`
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fi_FI.po po/dvbhddevice.pot
+msgfmt -c -o po/fi_FI.mo po/fi_FI.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/it_IT.po po/dvbhddevice.pot
+msgfmt -c -o po/it_IT.mo po/it_IT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/de_DE.po po/dvbhddevice.pot
+msgfmt -c -o po/de_DE.mo po/de_DE.po
+*** Plugin dvbsddevice:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbsddevice"' -I/include dvbsddevice.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbsddevice"' -I/include dvbsdffdevice.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"dvbsddevice"' -I/include dvbsdffosd.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared dvbsddevice.o dvbsdffdevice.o dvbsdffosd.o -o libvdr-dvbsddevice.so
+*** Plugin epgtableid0:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"epgtableid0"' -I/include epgtableid0.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared epgtableid0.o -o libvdr-epgtableid0.so
+*** Plugin hello:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"hello"' -I/include hello.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared hello.o -o libvdr-hello.so
+xgettext -C -cTRANSLATORS --no-wrap --no-location -k -ktr -ktrNOOP --package-name=vdr-hello --package-version=0.2.6 --msgid-bugs-address='<see README>' -o po/hello.pot `ls hello.c`
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/pt_PT.po po/hello.pot
+msgfmt -c -o po/pt_PT.mo po/pt_PT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/pl_PL.po po/hello.pot
+msgfmt -c -o po/pl_PL.mo po/pl_PL.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ro_RO.po po/hello.pot
+msgfmt -c -o po/ro_RO.mo po/ro_RO.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/et_EE.po po/hello.pot
+msgfmt -c -o po/et_EE.mo po/et_EE.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ca_ES.po po/hello.pot
+msgfmt -c -o po/ca_ES.mo po/ca_ES.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fi_FI.po po/hello.pot
+msgfmt -c -o po/fi_FI.mo po/fi_FI.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/tr_TR.po po/hello.pot
+msgfmt -c -o po/tr_TR.mo po/tr_TR.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/da_DK.po po/hello.pot
+msgfmt -c -o po/da_DK.mo po/da_DK.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/es_ES.po po/hello.pot
+msgfmt -c -o po/es_ES.mo po/es_ES.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sl_SI.po po/hello.pot
+msgfmt -c -o po/sl_SI.mo po/sl_SI.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/it_IT.po po/hello.pot
+msgfmt -c -o po/it_IT.mo po/it_IT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/nn_NO.po po/hello.pot
+msgfmt -c -o po/nn_NO.mo po/nn_NO.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/el_GR.po po/hello.pot
+msgfmt -c -o po/el_GR.mo po/el_GR.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sv_SE.po po/hello.pot
+msgfmt -c -o po/sv_SE.mo po/sv_SE.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/cs_CZ.po po/hello.pot
+msgfmt -c -o po/cs_CZ.mo po/cs_CZ.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/lt_LT.po po/hello.pot
+msgfmt -c -o po/lt_LT.mo po/lt_LT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fr_FR.po po/hello.pot
+msgfmt -c -o po/fr_FR.mo po/fr_FR.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sk_SK.po po/hello.pot
+msgfmt -c -o po/sk_SK.mo po/sk_SK.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/nl_NL.po po/hello.pot
+msgfmt -c -o po/nl_NL.mo po/nl_NL.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/hr_HR.po po/hello.pot
+msgfmt -c -o po/hr_HR.mo po/hr_HR.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ru_RU.po po/hello.pot
+msgfmt -c -o po/ru_RU.mo po/ru_RU.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/hu_HU.po po/hello.pot
+msgfmt -c -o po/hu_HU.mo po/hu_HU.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/zh_CN.po po/hello.pot
+msgfmt -c -o po/zh_CN.mo po/zh_CN.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/de_DE.po po/hello.pot
+msgfmt -c -o po/de_DE.mo po/de_DE.po
+*** Plugin osddemo:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"osddemo"' -I/include osddemo.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared osddemo.o -o libvdr-osddemo.so
+*** Plugin pictures:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"pictures"' -I/include pictures.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"pictures"' -I/include entry.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"pictures"' -I/include menu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"pictures"' -I/include player.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared pictures.o entry.o menu.o player.o -o libvdr-pictures.so
+xgettext -C -cTRANSLATORS --no-wrap --no-location -k -ktr -ktrNOOP --package-name=vdr-pictures --package-version=0.1.4 --msgid-bugs-address='<see README>' -o po/pictures.pot `ls player.c menu.c pictures.c entry.c`
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fi_FI.po po/pictures.pot
+msgfmt -c -o po/fi_FI.mo po/fi_FI.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/it_IT.po po/pictures.pot
+msgfmt -c -o po/it_IT.mo po/it_IT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/lt_LT.po po/pictures.pot
+msgfmt -c -o po/lt_LT.mo po/lt_LT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fr_FR.po po/pictures.pot
+msgfmt -c -o po/fr_FR.mo po/fr_FR.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ru_RU.po po/pictures.pot
+msgfmt -c -o po/ru_RU.mo po/ru_RU.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sk_SK.po po/pictures.pot
+msgfmt -c -o po/sk_SK.mo po/sk_SK.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/de_DE.po po/pictures.pot
+msgfmt -c -o po/de_DE.mo po/de_DE.po
+*** Plugin rcu:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"rcu"' -I/include rcu.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared rcu.o -o libvdr-rcu.so
+*** Plugin servicedemo:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='""' -I/include svccli.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared svccli.o -o libvdr-svccli.so
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='""' -I/include svcsvr.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared svcsvr.o -o libvdr-svcsvr.so
+*** Plugin skincurses:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"skincurses"' -I/include skincurses.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared skincurses.o -lncursesw -o libvdr-skincurses.so
+xgettext -C -cTRANSLATORS --no-wrap --no-location -k -ktr -ktrNOOP --package-name=vdr-skincurses --package-version=0.1.13 --msgid-bugs-address='<see README>' -o po/skincurses.pot `ls skincurses.c`
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/fi_FI.po po/skincurses.pot
+msgfmt -c -o po/fi_FI.mo po/fi_FI.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/it_IT.po po/skincurses.pot
+msgfmt -c -o po/it_IT.mo po/it_IT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/lt_LT.po po/skincurses.pot
+msgfmt -c -o po/lt_LT.mo po/lt_LT.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/ru_RU.po po/skincurses.pot
+msgfmt -c -o po/ru_RU.mo po/ru_RU.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/sk_SK.po po/skincurses.pot
+msgfmt -c -o po/sk_SK.mo po/sk_SK.po
+msgmerge -U --no-wrap --no-location --backup=none -q -N po/de_DE.po po/skincurses.pot
+msgfmt -c -o po/de_DE.mo po/de_DE.po
+*** Plugin status:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"status"' -I/include status.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared status.o -o libvdr-status.so
+*** Plugin svdrpdemo:
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -c -DPLUGIN_NAME_I18N='"svdrpdemo"' -I/include svdrpdemo.c
+g++ -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -O3 -fPIC -I/build/src/vdr-1.7.35/include -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -I/usr/include -Wl,-O1,--sort-common,--as-needed,-z,relro -shared svdrpdemo.o -o libvdr-svdrpdemo.so
