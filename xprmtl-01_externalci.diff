@@ -1,0 +1,459 @@
+diff -Nur vdr-1.7.35.orig/ci.h vdr-1.7.35/ci.h
+--- vdr-1.7.35.orig/ci.h	2013-01-06 15:58:43.334550977 +0100
++++ vdr-1.7.35/ci.h	2013-01-06 16:17:06.237890535 +0100
+@@ -72,6 +72,7 @@
+   };
+ 
+ class cDevice;
++class cTSBufferBase;
+ class cCamSlot;
+ 
+ enum eModuleStatus { msNone, msReset, msPresent, msReady };
+@@ -115,6 +116,11 @@
+        ///< The derived class must call Cancel(3) in its destructor.
+   virtual bool Ready(void);
+        ///< Returns 'true' if all present CAMs in this adapter are ready.
++#define EXTERNALCI_PATCH
++  virtual cTSBufferBase *GetTSBuffer(int FdDvr) { return NULL; }
++       ///< Derived classes can return a special TS buffer with features
++       ///< like rerouting the stream through an external ci.
++       ///< The caller must delete the buffer.
+   virtual bool SetIdle(bool Idle, bool TestOnly) { return false; }
+   virtual bool IsIdle(void) const { return false; }
+   };
+diff -Nur vdr-1.7.35.orig/device.h vdr-1.7.35/device.h
+--- vdr-1.7.35.orig/device.h	2013-01-06 15:58:43.337883780 +0100
++++ vdr-1.7.35/device.h	2013-01-06 16:17:06.237890535 +0100
+@@ -831,7 +831,14 @@
+ /// sure the returned data points to a TS packet and automatically
+ /// re-synchronizes after broken packets.
+ 
+-class cTSBuffer : public cThread {
++class cTSBufferBase {
++public:
++  cTSBufferBase() {}
++  virtual ~cTSBufferBase() {}
++  virtual uchar *Get(void) = 0;
++  };
++
++class cTSBuffer : public cTSBufferBase, public cThread {
+ private:
+   int f;
+   int cardIndex;
+@@ -840,8 +847,8 @@
+   virtual void Action(void);
+ public:
+   cTSBuffer(int File, int Size, int CardIndex);
+-  ~cTSBuffer();
+-  uchar *Get(void);
++  virtual ~cTSBuffer();
++  virtual uchar *Get(void);
+   };
+ 
+ /// A plugin that want to create devices handled by the dynamite-plugin needs to create
+diff -Nur vdr-1.7.35.orig/dvbci.c vdr-1.7.35/dvbci.c
+--- vdr-1.7.35.orig/dvbci.c	2013-01-06 15:58:43.341216559 +0100
++++ vdr-1.7.35/dvbci.c	2013-01-06 16:17:06.237890535 +0100
+@@ -22,23 +22,8 @@
+   adapter = Adapter;
+   frontend = Frontend;
+   idle = false;
+-  ca_caps_t Caps;
+-  if (ioctl(fd, CA_GET_CAP, &Caps) == 0) {
+-     if ((Caps.slot_type & CA_CI_LINK) != 0) {
+-        int NumSlots = Caps.slot_num;
+-        if (NumSlots > 0) {
+-           for (int i = 0; i < NumSlots; i++)
+-               new cCamSlot(this);
+-           Start();
+-           }
+-        else
+-           esyslog("ERROR: no CAM slots found on device %d", device->DeviceNumber());
+-        }
+-     else
+-        isyslog("device %d doesn't support CI link layer interface", device->DeviceNumber());
+-     }
+-  else
+-     esyslog("ERROR: can't get CA capabilities on device %d", device->DeviceNumber());
++  GetNumCamSlots(Device, Fd, this);
++  Start();
+ }
+ 
+ cDvbCiAdapter::~cDvbCiAdapter()
+@@ -48,6 +33,13 @@
+      CloseCa();
+ }
+ 
++cTSBufferBase *cDvbCiAdapter::GetTSBuffer(int FdDvr)
++{
++  if (device)
++     return new cTSBuffer(FdDvr, MEGABYTE(2), device->CardIndex() + 1);
++  return NULL;
++}
++
+ bool cDvbCiAdapter::OpenCa(void)
+ {
+   if (fd >= 0)
+@@ -142,10 +134,60 @@
+   return true;
+ }
+ 
++int cDvbCiAdapter::GetNumCamSlots(cDevice *Device, int Fd, cCiAdapter *CiAdapter)
++{
++  int NumSlots = -1;
++  if (Fd >= 0) {
++     ca_caps_t Caps;
++     if (ioctl(Fd, CA_GET_CAP, &Caps) == 0) {
++        if ((Caps.slot_type & CA_CI_LINK) != 0) {
++           NumSlots = Caps.slot_num;
++           if (NumSlots == 0)
++              esyslog("ERROR: no CAM slots found on device %d", Device->DeviceNumber());
++           else if (CiAdapter != NULL) {
++              for (int i = 0; i < NumSlots; i++)
++                  new cCamSlot(CiAdapter);
++              }
++           else
++              return NumSlots;
++           }
++        else
++           isyslog("device %d doesn't support CI link layer interface", Device->DeviceNumber());
++        }
++     else
++        esyslog("ERROR: can't get CA capabilities on device %d", Device->DeviceNumber());
++     }
++  return -1;
++}
++
+ cDvbCiAdapter *cDvbCiAdapter::CreateCiAdapter(cDevice *Device, int Fd, int Adapter, int Frontend)
+ {
+-  // TODO check whether a CI is actually present?
+-  if (Device)
++  // don't create a ci-adapter if it's not useable
++  if (Device && (Fd >= 0) && (GetNumCamSlots(Device, Fd, NULL) > 0))
+      return new cDvbCiAdapter(Device, Fd, Adapter, Frontend);
+-  return NULL;
++
++  if (Fd >= 0)
++     close(Fd);
++
++  // try to find an external ci-adapter
++  for (cDvbCiAdapterProbe *cp = DvbCiAdapterProbes.First(); cp; cp = DvbCiAdapterProbes.Next(cp)) {
++      cDvbCiAdapter *ca = cp->Probe(Device);
++      if (ca)
++         return ca;
++      }
++ return NULL;
++}
++
++// --- cDvbCiAdapterProbe -------------------------------------------------------
++
++cList<cDvbCiAdapterProbe> DvbCiAdapterProbes;
++
++cDvbCiAdapterProbe::cDvbCiAdapterProbe(void)
++{
++  DvbCiAdapterProbes.Add(this);
++}
++
++cDvbCiAdapterProbe::~cDvbCiAdapterProbe()
++{
++  DvbCiAdapterProbes.Del(this, false);
+ }
+diff -Nur vdr-1.7.35.orig/dvbci.h vdr-1.7.35/dvbci.h
+--- vdr-1.7.35.orig/dvbci.h	2013-01-06 15:58:43.341216559 +0100
++++ vdr-1.7.35/dvbci.h	2013-01-06 16:17:06.241224299 +0100
+@@ -31,9 +31,33 @@
+   cDvbCiAdapter(cDevice *Device, int Fd, int Adapter = -1, int Frontend = -1);
+ public:
+   virtual ~cDvbCiAdapter();
++  virtual cTSBufferBase *GetTSBuffer(int FdDvr);
++  static int GetNumCamSlots(cDevice *Device, int Fd, cCiAdapter *CiAdapter);
++   ///< Tests if the CA device is usable for vdr.
++   ///< If CiAdapter is not NULL it will create the CamSlots for the given ci-adapter.
+   virtual bool SetIdle(bool Idle, bool TestOnly);
+   virtual bool IsIdle(void) const { return idle; }
+   static cDvbCiAdapter *CreateCiAdapter(cDevice *Device, int Fd, int Adapter = -1, int Frontend = -1);
+   };
+ 
++// A plugin that implements an external DVB ci-adapter derived from cDvbCiAdapter needs to create
++// a cDvbCiAdapterProbe derived object on the heap in order to have its Probe()
++// function called, where it can actually create the appropriate ci-adapter.
++// The cDvbCiAdapterProbe object must be created in the plugin's constructor,
++// and deleted in its destructor.
++// Every plugin has to track its own list of already used device nodes.
++// The Probes are always called if the base cDvbCiAdapter can't create a ci-adapter on its own.
++
++class cDvbCiAdapterProbe : public cListObject {
++public:
++  cDvbCiAdapterProbe(void);
++  virtual ~cDvbCiAdapterProbe();
++  virtual cDvbCiAdapter *Probe(cDevice *Device) = 0;
++     ///< Probes for a DVB ci-adapter for the given Device and creates the appropriate
++     ///< object derived from cDvbCiAdapter if applicable.
++     ///< Returns NULL if no adapter has been created.
++  };
++
++extern cList<cDvbCiAdapterProbe> DvbCiAdapterProbes;
++
+ #endif //__DVBCI_H
+diff -Nur vdr-1.7.35.orig/dvbdevice.c vdr-1.7.35/dvbdevice.c
+--- vdr-1.7.35.orig/dvbdevice.c	2013-01-06 15:58:43.344549634 +0100
++++ vdr-1.7.35/dvbdevice.c	2013-01-06 16:17:06.244558205 +0100
+@@ -1105,9 +1105,8 @@
+ 
+   // Common Interface:
+ 
+-  fd_ca = DvbOpen(DEV_DVB_CA, adapter, frontend, O_RDWR);
+-  if (fd_ca >= 0)
+-     ciAdapter = cDvbCiAdapter::CreateCiAdapter(parentDevice ? parentDevice : this, fd_ca, adapter, frontend);
++  int fd_ca = DvbOpen(DEV_DVB_CA, adapter, frontend, O_RDWR);
++  ciAdapter = cDvbCiAdapter::CreateCiAdapter(parentDevice ? parentDevice : this, fd_ca, adapter, frontend);
+ 
+   // The DVR device (will be opened and closed as needed):
+ 
+@@ -1675,8 +1674,12 @@
+ {
+   CloseDvr();
+   fd_dvr = DvbOpen(DEV_DVB_DVR, adapter, frontend, O_RDONLY | O_NONBLOCK, true);
+-  if (fd_dvr >= 0)
+-     tsBuffer = new cTSBuffer(fd_dvr, MEGABYTE(5), CardIndex() + 1);
++  if (fd_dvr >= 0) {
++     if (ciAdapter)
++        tsBuffer = ciAdapter->GetTSBuffer(fd_dvr);
++     if (tsBuffer == NULL)
++        tsBuffer = new cTSBuffer(fd_dvr, MEGABYTE(5), CardIndex() + 1);
++     }
+   return fd_dvr >= 0;
+ }
+ 
+diff -Nur vdr-1.7.35.orig/dvbdevice.c.orig vdr-1.7.35/dvbdevice.c.orig
+--- vdr-1.7.35.orig/dvbdevice.c.orig	2013-01-06 15:22:19.634439902 +0100
++++ vdr-1.7.35/dvbdevice.c.orig	2013-01-06 15:58:43.344549634 +0100
+@@ -290,7 +290,7 @@
+   bool SendDiseqc;
+   int frontendType;
+   const cDvbDevice *device;
+-  int fd_frontend;
++  mutable int fd_frontend;
+   int adapter, frontend;
+   uint32_t subsystemId;
+   int tuneTimeout;
+@@ -301,7 +301,7 @@
+   const cScr *scr;
+   bool lnbPowerTurnedOn;
+   eTunerStatus tunerStatus;
+-  cMutex mutex;
++  mutable cMutex mutex;
+   cCondVar locked;
+   cCondVar newSet;
+   dvb_diseqc_master_cmd diseqc_cmd;
+@@ -315,6 +315,10 @@
+   void ResetToneAndVoltage(void);
+   bool SetFrontend(void);
+   virtual void Action(void);
++
++  mutable bool isIdle;
++  bool OpenFrontend(void) const;
++  bool CloseFrontend(void);
+ public:
+   cDvbTuner(const cDvbDevice *Device, int Fd_Frontend, int Adapter, int Frontend);
+   virtual ~cDvbTuner();
+@@ -331,6 +335,8 @@
+   int GetSignalStrength(void) const;
+   int GetSignalQuality(void) const;
+   bool SendDiseqcCmd(dvb_diseqc_master_cmd cmd);
++  bool SetIdle(bool Idle);
++  bool IsIdle(void) const { return isIdle; }
+ private:
+   int GetCurrentDeliverySystem(void);
+   };
+@@ -355,6 +361,7 @@
+   tunerStatus = tsIdle;
+   bondedTuner = NULL;
+   bondedMaster = false;
++  isIdle = false;
+   SetDescription("tuner on frontend %d/%d", adapter, frontend);
+   Start();
+ }
+@@ -372,6 +379,8 @@
+      ExecuteDiseqc(lastDiseqc, &Frequency);
+      }
+   */
++  if (device && device->IsSubDevice())
++     CloseFrontend();
+ }
+ 
+ bool cDvbTuner::Bond(cDvbTuner *Tuner)
+@@ -516,6 +525,8 @@
+ 
+ void cDvbTuner::ClearEventQueue(void) const
+ {
++  if (!OpenFrontend())
++     return;
+   cPoller Poller(fd_frontend);
+   if (Poller.Poll(TUNER_POLL_TIMEOUT)) {
+      dvb_frontend_event Event;
+@@ -748,6 +759,8 @@
+ 
+ bool cDvbTuner::SetFrontend(void)
+ {
++  if (!OpenFrontend())
++     return false;
+ #define MAXFRONTENDCMDS 16
+ #define SETCMD(c, d) { Frontend[CmdSeq.num].cmd = (c);\
+                        Frontend[CmdSeq.num].u.data = (d);\
+@@ -893,9 +906,11 @@
+   bool LostLock = false;
+   fe_status_t Status = (fe_status_t)0;
+   while (Running()) {
+-        fe_status_t NewStatus;
+-        if (GetFrontendStatus(NewStatus))
+-           Status = NewStatus;
++        if (!isIdle) {
++           fe_status_t NewStatus;
++           if (GetFrontendStatus(NewStatus))
++              Status = NewStatus;
++           }
+         cMutexLock MutexLock(&mutex);
+         if (SendDiseqc) {
+            CHECK(ioctl(fd_frontend, FE_DISEQC_SEND_MASTER_CMD, &diseqc_cmd));
+@@ -952,6 +967,40 @@
+         }
+ }
+ 
++bool cDvbTuner::SetIdle(bool Idle)
++{
++  if (isIdle == Idle)
++     return true;
++  isIdle = Idle;
++  if (Idle)
++     return CloseFrontend();
++  return OpenFrontend();
++}
++
++bool cDvbTuner::OpenFrontend(void) const
++{
++  if (fd_frontend >= 0)
++     return true;
++  cMutexLock MutexLock(&mutex);
++  fd_frontend = cDvbDevice::DvbOpen(DEV_DVB_FRONTEND, adapter, frontend, O_RDWR | O_NONBLOCK);
++  if (fd_frontend < 0)
++     return false;
++  isIdle = false;
++  return true;
++}
++
++bool cDvbTuner::CloseFrontend(void)
++{
++  if (fd_frontend < 0)
++     return true;
++  cMutexLock MutexLock(&mutex);
++  tunerStatus = tsIdle;
++  newSet.Broadcast();
++  close(fd_frontend);
++  fd_frontend = -1;
++  return true;
++}
++
+ // --- cDvbSourceParam -------------------------------------------------------
+ 
+ class cDvbSourceParam : public cSourceParam {
+@@ -1037,7 +1086,8 @@
+   NULL
+   };
+ 
+-cDvbDevice::cDvbDevice(int Adapter, int Frontend)
++cDvbDevice::cDvbDevice(int Adapter, int Frontend, cDevice *ParentDevice)
++:cDevice(ParentDevice)
+ {
+   adapter = Adapter;
+   frontend = Frontend;
+@@ -1057,7 +1107,7 @@
+ 
+   fd_ca = DvbOpen(DEV_DVB_CA, adapter, frontend, O_RDWR);
+   if (fd_ca >= 0)
+-     ciAdapter = cDvbCiAdapter::CreateCiAdapter(this, fd_ca);
++     ciAdapter = cDvbCiAdapter::CreateCiAdapter(parentDevice ? parentDevice : this, fd_ca, adapter, frontend);
+ 
+   // The DVR device (will be opened and closed as needed):
+ 
+@@ -1285,7 +1335,11 @@
+          if (d >= 0) {
+             int ErrorDevice = 0;
+             if (cDevice *Device1 = cDevice::GetDevice(i)) {
++               if (Device1->HasSubDevice())
++                  Device1 = Device1->SubDevice();
+                if (cDevice *Device2 = cDevice::GetDevice(d)) {
++                  if (Device2->HasSubDevice())
++                     Device2 = Device2->SubDevice();
+                   if (cDvbDevice *DvbDevice1 = dynamic_cast<cDvbDevice *>(Device1)) {
+                      if (cDvbDevice *DvbDevice2 = dynamic_cast<cDvbDevice *>(Device2)) {
+                         if (!DvbDevice1->Bond(DvbDevice2))
+@@ -1319,7 +1373,10 @@
+ void cDvbDevice::UnBondDevices(void)
+ {
+   for (int i = 0; i < cDevice::NumDevices(); i++) {
+-      if (cDvbDevice *d = dynamic_cast<cDvbDevice *>(cDevice::GetDevice(i)))
++      cDevice *dev = cDevice::GetDevice(i);
++      if (dev && dev->HasSubDevice())
++         dev = dev->SubDevice();
++      if (cDvbDevice *d = dynamic_cast<cDvbDevice *>(dev))
+          d->UnBond();
+       }
+ }
+@@ -1373,6 +1430,26 @@
+   return true;
+ }
+ 
++bool cDvbDevice::SetIdleDevice(bool Idle, bool TestOnly)
++{
++  if (TestOnly) {
++     if (ciAdapter)
++        return ciAdapter->SetIdle(Idle, true);
++     return true;
++     }
++  if (!dvbTuner->SetIdle(Idle))
++     return false;
++  if (ciAdapter && !ciAdapter->SetIdle(Idle, false)) {
++     dvbTuner->SetIdle(!Idle);
++     return false;
++     }
++  if (Idle)
++     StopSectionHandler();
++  else
++     StartSectionHandler();
++  return true;
++}
++
+ bool cDvbDevice::HasCi(void)
+ {
+   return ciAdapter;
+@@ -1539,7 +1616,7 @@
+ 
+ bool cDvbDevice::ProvidesEIT(void) const
+ {
+-  return dvbTuner != NULL;
++  return !IsIdle() && (dvbTuner != NULL) && !dvbTuner->IsIdle() && ((ciAdapter == NULL) || !ciAdapter->IsIdle());
+ }
+ 
+ int cDvbDevice::NumProvidedSystems(void) const
+diff -Nur vdr-1.7.35.orig/dvbdevice.h vdr-1.7.35/dvbdevice.h
+--- vdr-1.7.35.orig/dvbdevice.h	2013-01-06 15:58:43.344549634 +0100
++++ vdr-1.7.35/dvbdevice.h	2013-01-06 16:17:06.244558205 +0100
+@@ -127,7 +127,7 @@
+   int deliverySystems[MAXDELIVERYSYSTEMS];
+   int numDeliverySystems;
+   int numModulations;
+-  int fd_dvr, fd_ca;
++  int fd_dvr;
+   static cMutex bondMutex;
+   cDvbDevice *bondedDevice;
+   mutable bool needsDetachBondedReceivers;
+@@ -228,7 +228,7 @@
+ // Receiver facilities
+ 
+ private:
+-  cTSBuffer *tsBuffer;
++  cTSBufferBase *tsBuffer;
+ protected:
+   virtual bool OpenDvr(void);
+   virtual void CloseDvr(void);

@@ -1,0 +1,11 @@
+diff -Nur vdr-1.7.35.orig/menu.c vdr-1.7.35/menu.c
+--- vdr-1.7.35.orig/menu.c	2013-01-06 15:35:51.844482225 +0100
++++ vdr-1.7.35/menu.c	2013-01-06 15:42:16.374485187 +0100
+@@ -2395,6 +2395,7 @@
+ public:
+   cMenuEditRecording(cRecording *Recording);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuRenameRecording"; }
+ };
+ 
+ cMenuEditRecording::cMenuEditRecording(cRecording *Recording)

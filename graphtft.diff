@@ -1,0 +1,666 @@
+diff -Nur vdr-1.7.35.orig/menu.c vdr-1.7.35/menu.c
+--- vdr-1.7.35.orig/menu.c	2013-01-06 15:18:42.861106294 +0100
++++ vdr-1.7.35/menu.c	2013-01-06 15:35:51.844482225 +0100
+@@ -169,6 +169,7 @@
+ public:
+   cMenuEditChannel(cChannel *Channel, bool New = false);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuEditChannel"; }
+   };
+ 
+ cMenuEditChannel::cMenuEditChannel(cChannel *Channel, bool New)
+@@ -354,6 +355,7 @@
+   cMenuChannels(void);
+   ~cMenuChannels();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuChannels"; }
+   };
+ 
+ cMenuChannels::cMenuChannels(void)
+@@ -1141,6 +1143,7 @@
+   virtual ~cMenuTimers();
+   virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuTimers"; }
+   };
+ 
+ cMenuTimers::cMenuTimers(void)
+@@ -1369,6 +1372,7 @@
+ {
+   cOsdMenu::Display();
+   DisplayMenu()->SetEvent(event);
++  cStatus::MsgOsdSetEvent(event);
+   if (event->Description())
+      cStatus::MsgOsdTextItem(event->Description());
+ }
+@@ -1498,6 +1502,8 @@
+   static void SetCurrentChannel(int ChannelNr) { currentChannel = ChannelNr; }
+   static const cEvent *ScheduleEvent(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return now ? "MenuWhatsOnNow" : "MenuWhatsOnNext"; }
++  virtual void Display(void);
+   };
+ 
+ int cMenuWhatsOn::currentChannel = 0;
+@@ -1526,6 +1532,18 @@
+   SetHelpKeys();
+ }
+ 
++void cMenuWhatsOn::Display(void)
++{
++   cOsdMenu::Display();
++
++   if (Count() > 0) {
++      int ni = 0;
++      for (cOsdItem *item = First(); item; item = Next(item)) {
++         cStatus::MsgOsdEventItem(((cMenuScheduleItem*)item)->event, item->Text(), ni++, Count());
++      }
++   }
++}
++
+ bool cMenuWhatsOn::Update(void)
+ {
+   bool result = false;
+@@ -1666,6 +1684,8 @@
+   cMenuSchedule(void);
+   virtual ~cMenuSchedule();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSchedule"; }
++  virtual void Display(void);
+   };
+ 
+ cMenuSchedule::cMenuSchedule(void)
+@@ -1692,6 +1712,18 @@
+   cMenuWhatsOn::ScheduleEvent(); // makes sure any posted data is cleared
+ }
+ 
++void cMenuSchedule::Display(void)
++{
++   cOsdMenu::Display();
++
++   if (Count() > 0) {
++      int ni = 0;
++      for (cOsdItem *item = First(); item; item = Next(item)) {
++         cStatus::MsgOsdEventItem(((cMenuScheduleItem*)item)->event, item->Text(), ni++, Count());
++      }
++   }
++}
++
+ void cMenuSchedule::PrepareScheduleAllThis(const cEvent *Event, const cChannel *Channel)
+ {
+   Clear();
+@@ -2056,6 +2088,7 @@
+   cMenuCam(cCamSlot *CamSlot);
+   virtual ~cMenuCam();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuCam"; }
+   };
+ 
+ cMenuCam::cMenuCam(cCamSlot *CamSlot)
+@@ -2243,6 +2276,7 @@
+   cMenuRecording(const cRecording *Recording, bool WithButtons = false);
+   virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuRecording"; }
+ };
+ 
+ cMenuRecording::cMenuRecording(const cRecording *Recording, bool WithButtons)
+@@ -2259,6 +2293,7 @@
+ {
+   cOsdMenu::Display();
+   DisplayMenu()->SetRecording(recording);
++  cStatus::MsgOsdSetRecording(recording);
+   if (recording->Info()->Description())
+      cStatus::MsgOsdTextItem(recording->Info()->Description());
+ }
+@@ -2829,6 +2864,7 @@
+   cMenuSetupOSD(void);
+   virtual ~cMenuSetupOSD();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupOsd"; }
+   };
+ 
+ cMenuSetupOSD::cMenuSetupOSD(void)
+@@ -2979,6 +3015,7 @@
+ public:
+   cMenuSetupEPG(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupEpg"; }
+   };
+ 
+ cMenuSetupEPG::cMenuSetupEPG(void)
+@@ -3076,6 +3113,7 @@
+ public:
+   cMenuSetupDVB(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupDvb"; }
+   };
+ 
+ cMenuSetupDVB::cMenuSetupDVB(void)
+@@ -3222,6 +3260,7 @@
+ public:
+   cMenuSetupLNB(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupLnb"; }
+   };
+ 
+ cMenuSetupLNB::cMenuSetupLNB(void)
+@@ -3325,6 +3364,7 @@
+ public:
+   cMenuSetupCAM(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupCam"; }
+   };
+ 
+ cMenuSetupCAM::cMenuSetupCAM(void)
+@@ -3510,6 +3550,7 @@
+ public:
+   cMenuSetupPlugins(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetupPlugins"; }
+   };
+ 
+ cMenuSetupPlugins::cMenuSetupPlugins(void)
+@@ -3565,6 +3606,7 @@
+ public:
+   cMenuSetup(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuSetup"; }
+   };
+ 
+ cMenuSetup::cMenuSetup(void)
+diff -Nur vdr-1.7.35.orig/menu.c.orig vdr-1.7.35/menu.c.orig
+--- vdr-1.7.35.orig/menu.c.orig	2013-01-06 15:08:22.177745590 +0100
++++ vdr-1.7.35/menu.c.orig	2013-01-06 15:18:42.861106294 +0100
+@@ -32,6 +32,7 @@
+ #include "timers.h"
+ #include "transfer.h"
+ #include "videodir.h"
++#include "menuorgpatch.h"
+ 
+ #define MAXWAIT4EPGINFO   3 // seconds
+ #define MODETIMEOUT       3 // seconds
+@@ -1004,8 +1005,10 @@
+ class cMenuTimerItem : public cOsdItem {
+ private:
+   cTimer *timer;
++  char diskStatus;
+ public:
+   cMenuTimerItem(cTimer *Timer);
++  void SetDiskStatus(char DiskStatus);
+   virtual int Compare(const cListObject &ListObject) const;
+   virtual void Set(void);
+   cTimer *Timer(void) { return timer; }
+@@ -1015,6 +1018,7 @@
+ cMenuTimerItem::cMenuTimerItem(cTimer *Timer)
+ {
+   timer = Timer;
++  diskStatus = ' ';
+   Set();
+ }
+ 
+@@ -1045,7 +1049,10 @@
+      File++;
+   else
+      File = timer->File();
+-  SetText(cString::sprintf("%c\t%d\t%s%s%s\t%02d:%02d\t%02d:%02d\t%s",
++  cCharSetConv csc("ISO-8859-1", cCharSetConv::SystemCharacterTable());
++  char diskStatusString[2] = { diskStatus, 0 };
++  SetText(cString::sprintf("%s%c\t%d\t%s%s%s\t%02d:%02d\t%02d:%02d\t%s",
++                    csc.Convert(diskStatusString),
+                     !(timer->HasFlags(tfActive)) ? ' ' : timer->FirstDay() ? '!' : timer->Recording() ? '#' : '>',
+                     timer->Channel()->Number(),
+                     *name,
+@@ -1064,6 +1071,57 @@
+      DisplayMenu->SetItem(Text(), Index, Current, Selectable);
+ }
+ 
++void cMenuTimerItem::SetDiskStatus(char DiskStatus)
++{
++  diskStatus = DiskStatus;
++  Set();
++}
++
++// --- cTimerEntry -----------------------------------------------------------
++
++class cTimerEntry : public cListObject {
++private:
++  cMenuTimerItem *item;
++  const cTimer *timer;
++  time_t start;
++public:
++  cTimerEntry(cMenuTimerItem *item) : item(item), timer(item->Timer()), start(timer->StartTime()) {}
++  cTimerEntry(const cTimer *timer, time_t start) : item(NULL), timer(timer), start(start) {}
++  virtual int Compare(const cListObject &ListObject) const;
++  bool active(void) const { return timer->HasFlags(tfActive); }
++  time_t startTime(void) const { return start; }
++  int priority(void) const { return timer->Priority(); }
++  int duration(void) const;
++  bool repTimer(void) const { return !timer->IsSingleEvent(); }
++  bool isDummy(void) const { return item == NULL; }
++  const cTimer *Timer(void) const { return timer; }
++  void SetDiskStatus(char DiskStatus);
++  };
++
++int cTimerEntry::Compare(const cListObject &ListObject) const
++{
++  cTimerEntry *entry = (cTimerEntry *)&ListObject;
++  int r = startTime() - entry->startTime();
++  if (r == 0)
++     r = entry->priority() - priority();
++  return r;
++}
++
++int cTimerEntry::duration(void) const
++{
++  int dur = (timer->Stop()  / 100 * 60 + timer->Stop()  % 100) -
++            (timer->Start() / 100 * 60 + timer->Start() % 100);
++  if (dur < 0)
++     dur += 24 * 60;
++  return dur;
++}
++
++void cTimerEntry::SetDiskStatus(char DiskStatus)
++{
++  if (item)
++     item->SetDiskStatus(DiskStatus);
++}
++
+ // --- cMenuTimers -----------------------------------------------------------
+ 
+ class cMenuTimers : public cOsdMenu {
+@@ -1076,14 +1134,17 @@
+   eOSState Info(void);
+   cTimer *CurrentTimer(void);
+   void SetHelpKeys(void);
++  void ActualiseDiskStatus(void);
++  bool actualiseDiskStatus;
+ public:
+   cMenuTimers(void);
+   virtual ~cMenuTimers();
++  virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
+   };
+ 
+ cMenuTimers::cMenuTimers(void)
+-:cOsdMenu(tr("Timers"), 2, CHNUMWIDTH, 10, 6, 6)
++:cOsdMenu(tr("Timers"), 3, CHNUMWIDTH, 10, 6, 6)
+ {
+   SetMenuCategory(mcTimer);
+   helpKeys = -1;
+@@ -1095,6 +1156,7 @@
+   SetCurrent(First());
+   SetHelpKeys();
+   Timers.IncBeingEdited();
++  actualiseDiskStatus = true;
+ }
+ 
+ cMenuTimers::~cMenuTimers()
+@@ -1133,7 +1195,7 @@
+      timer->OnOff();
+      timer->SetEventFromSchedule();
+      RefreshCurrent();
+-     DisplayCurrent(true);
++     Display();
+      if (timer->FirstDay())
+         isyslog("timer %s first day set to %s", *timer->ToDescr(), *timer->PrintFirstDay());
+      else
+@@ -1192,6 +1254,67 @@
+   return osContinue;
+ }
+ 
++void cMenuTimers::ActualiseDiskStatus(void)
++{
++  if (!actualiseDiskStatus || !Count())
++     return;
++
++  // compute free disk space
++  int freeMB, freeMinutes, runshortMinutes;
++  VideoDiskSpace(&freeMB);
++  freeMinutes = int(double(freeMB) * 1.1 / 25.75); // overestimate by 10 percent
++  runshortMinutes = freeMinutes / 5; // 20 Percent
++
++  // fill entries list
++  cTimerEntry *entry;
++  cList<cTimerEntry> entries;
++  for (cOsdItem *item = First(); item; item = Next(item))
++     entries.Add(new cTimerEntry((cMenuTimerItem *)item));
++
++  // search last start time
++  time_t last = 0;
++  for (entry = entries.First(); entry; entry = entries.Next(entry))
++     last = max(entry->startTime(), last);
++
++  // add entries for repeating timers
++  for (entry = entries.First(); entry; entry = entries.Next(entry))
++     if (entry->repTimer() && !entry->isDummy())
++        for (time_t start = cTimer::IncDay(entry->startTime(), 1);
++             start <= last;
++             start = cTimer::IncDay(start, 1))
++           if (entry->Timer()->DayMatches(start))
++              entries.Add(new cTimerEntry(entry->Timer(), start));
++
++  // set the disk-status
++  entries.Sort();
++  for (entry = entries.First(); entry; entry = entries.Next(entry)) {
++     char status = ' ';
++     if (entry->active()) {
++        freeMinutes -= entry->duration();
++        status = freeMinutes > runshortMinutes ? '+' : freeMinutes > 0 ? 177 /* +/- */ : '-';
++        }
++     entry->SetDiskStatus(status);
++#ifdef DEBUG_TIMER_INFO
++     dsyslog("timer-info: %c | %d | %s | %s | %3d | %+5d -> %+5d",
++             status,
++             entry->startTime(),
++             entry->active() ? "aktiv " : "n.akt.",
++             entry->repTimer() ? entry->isDummy() ? "  dummy  " : "mehrmalig" : "einmalig ",
++             entry->duration(),
++             entry->active() ? freeMinutes + entry->duration() : freeMinutes,
++             freeMinutes);
++#endif
++     }
++
++  actualiseDiskStatus = false;
++}
++
++void cMenuTimers::Display(void)
++{
++  ActualiseDiskStatus();
++  cOsdMenu::Display();
++}
++
+ eOSState cMenuTimers::ProcessKey(eKeys Key)
+ {
+   int TimerNumber = HasSubMenu() ? Count() : -1;
+@@ -1200,18 +1323,22 @@
+   if (state == osUnknown) {
+      switch (Key) {
+        case kOk:     return Edit();
+-       case kRed:    state = OnOff(); break; // must go through SetHelpKeys()!
++       case kRed:    actualiseDiskStatus = true;
++                     state = OnOff(); break; // must go through SetHelpKeys()!
+        case kGreen:  return New();
+-       case kYellow: state = Delete(); break;
++       case kYellow: actualiseDiskStatus = true;
++                     state = Delete(); break;
+        case kInfo:
+        case kBlue:   return Info();
+                      break;
+        default: break;
+        }
+      }
+-  if (TimerNumber >= 0 && !HasSubMenu() && Timers.Get(TimerNumber)) {
+-     // a newly created timer was confirmed with Ok
+-     Add(new cMenuTimerItem(Timers.Get(TimerNumber)), true);
++  if (TimerNumber >= 0 && !HasSubMenu()) {
++     if (Timers.Get(TimerNumber)) // a newly created timer was confirmed with Ok
++        Add(new cMenuTimerItem(Timers.Get(TimerNumber)), true);
++     Sort();
++     actualiseDiskStatus = true;
+      Display();
+      }
+   if (Key != kNone)
+@@ -3535,6 +3662,9 @@
+   cancelFileTransferItem = NULL;
+   stopRecordingItem = NULL;
+   recordControlsState = 0;
++
++  MenuOrgPatch::EnterRootMenu();
++
+   Set();
+ 
+   // Initial submenus:
+@@ -3579,6 +3709,29 @@
+   SetTitle("VDR");
+   SetHasHotkeys();
+ 
++  if (MenuOrgPatch::IsCustomMenuAvailable()) {
++     MenuItemDefinitions* menuItems = MenuOrgPatch::MainMenuItems();
++     for (MenuItemDefinitions::iterator i = menuItems->begin(); i != menuItems->end(); i++) {
++         cOsdItem* osdItem = NULL;
++         if ((*i)->IsCustomOsdItem()) {
++            osdItem = (*i)->CustomOsdItem();
++            if (osdItem &&  !(*i)->IsSeparatorItem())
++                   osdItem->SetText(hk(osdItem->Text()));
++            }
++         else if ((*i)->IsPluginItem()) {
++            const char *item = (*i)->PluginMenuEntry();
++            if (item)
++              osdItem = new cMenuPluginItem(hk(item), (*i)->PluginIndex());
++            }
++         if (osdItem) {
++            Add(osdItem);
++            if ((*i)->IsSelected())
++               SetCurrent(osdItem);
++            }
++         }
++     }
++  else {
++
+   // Basic menu items:
+ 
+   Add(new cOsdItem(hk(tr("Schedule")),   osSchedule));
+@@ -3605,6 +3758,8 @@
+   if (Commands.Count())
+      Add(new cOsdItem(hk(tr("Commands")),  osCommands));
+ 
++  }
++
+   Update(true);
+ 
+   Display();
+@@ -3750,6 +3905,41 @@
+                          state = osEnd;
+                        }
+                        break;
++    case osBack:       {
++                          if (MenuOrgPatch::IsCustomMenuAvailable())
++                          {
++                            bool leavingMenuSucceeded = MenuOrgPatch::LeaveSubMenu();
++                            Set();
++                            stopReplayItem = NULL;
++                            cancelEditingItem = NULL;
++                            stopRecordingItem = NULL;
++                            recordControlsState = 0;
++                            Update(true);
++                            Display();
++                            if (leavingMenuSucceeded)
++                              return osContinue;
++                            else
++                              return osEnd;
++                          }
++                       }
++                       break;
++    case osUser1:      {
++                          if (MenuOrgPatch::IsCustomMenuAvailable()) {
++                            MenuOrgPatch::EnterSubMenu(Get(Current()));
++                            Set();
++                            return osContinue;
++                          }
++                       }
++                       break;
++    case osUser2:      {
++                          if (MenuOrgPatch::IsCustomMenuAvailable()) {
++                            cOsdMenu* osdMenu = MenuOrgPatch::Execute(Get(Current()));
++                            if (osdMenu)
++                              return AddSubMenu(osdMenu);
++                            return osEnd;
++                          }
++                       }
++                       break;
+     default: switch (Key) {
+                case kRecord:
+                case kRed:    if (!HadSubMenu)
+diff -Nur vdr-1.7.35.orig/menu.h vdr-1.7.35/menu.h
+--- vdr-1.7.35.orig/menu.h	2013-01-06 14:17:16.294348853 +0100
++++ vdr-1.7.35/menu.h	2013-01-06 15:35:51.847815813 +0100
+@@ -29,6 +29,7 @@
+   void SetText(const char *Text);
+   virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuText"; }
+   };
+ 
+ class cMenuFolder : public cOsdMenu {
+@@ -67,6 +68,7 @@
+   cMenuCommands(const char *Title, cList<cNestedItem> *Commands, const char *Parameters = NULL);
+   virtual ~cMenuCommands();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuCommands"; }
+   };
+ 
+ class cMenuEditTimer : public cOsdMenu {
+@@ -85,6 +87,7 @@
+   cMenuEditTimer(cTimer *Timer, bool New = false);
+   virtual ~cMenuEditTimer();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuTimerEdit"; }
+   };
+ 
+ class cMenuEvent : public cOsdMenu {
+@@ -94,6 +97,7 @@
+   cMenuEvent(const cEvent *Event, bool CanSwitch = false, bool Buttons = false);
+   virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuEvent"; }
+   };
+ 
+ class cMenuMain : public cOsdMenu {
+@@ -111,6 +115,7 @@
+   cMenuMain(eOSState State = osUnknown);
+   virtual eOSState ProcessKey(eKeys Key);
+   static cOsdObject *PluginOsdObject(void);
++  virtual const char* MenuKind() { return "MenuMain"; }
+   };
+ 
+ class cDisplayChannel : public cOsdObject {
+@@ -214,6 +219,7 @@
+   cMenuRecordings(const char *Base = NULL, int Level = 0, bool OpenSubMenus = false);
+   ~cMenuRecordings();
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuRecordings"; }
+   };
+ 
+ class cRecordControl {
+diff -Nur vdr-1.7.35.orig/menuitems.h vdr-1.7.35/menuitems.h
+--- vdr-1.7.35.orig/menuitems.h	2012-03-13 12:19:11.000000000 +0100
++++ vdr-1.7.35/menuitems.h	2013-01-06 15:35:51.847815813 +0100
+@@ -209,6 +209,7 @@
+   cMenuSetupPage(void);
+   virtual eOSState ProcessKey(eKeys Key);
+   void SetPlugin(cPlugin *Plugin);
++  const char* MenuKind() { return "MenuSetupPage"; }
+   };
+ 
+ #endif //__MENUITEMS_H
+diff -Nur vdr-1.7.35.orig/osdbase.c vdr-1.7.35/osdbase.c
+--- vdr-1.7.35.orig/osdbase.c	2013-01-06 14:17:16.294348853 +0100
++++ vdr-1.7.35/osdbase.c	2013-01-06 15:35:51.847815813 +0100
+@@ -106,6 +106,7 @@
+   free(status);
+   displayMenu->Clear();
+   cStatus::MsgOsdClear();
++  cStatus::MsgOsdMenuDestroy();
+   if (!--displayMenuCount)
+      DELETENULL(displayMenu);
+ }
+@@ -226,6 +227,7 @@
+   if (menuCategory != displayMenu->MenuCategory())
+      displayMenu->SetMenuCategory(menuCategory);
+   displayMenuItems = displayMenu->MaxItems();
++  cStatus::MsgOsdMenuDisplay(MenuKind());
+   displayMenu->SetTabs(cols[0], cols[1], cols[2], cols[3], cols[4]);//XXX
+   displayMenu->SetTitle(title);
+   cStatus::MsgOsdTitle(title);
+diff -Nur vdr-1.7.35.orig/osdbase.h vdr-1.7.35/osdbase.h
+--- vdr-1.7.35.orig/osdbase.h	2013-01-06 14:17:16.294348853 +0100
++++ vdr-1.7.35/osdbase.h	2013-01-06 15:35:51.851149142 +0100
+@@ -139,6 +139,7 @@
+   void Ins(cOsdItem *Item, bool Current = false, cOsdItem *Before = NULL);
+   virtual void Display(void);
+   virtual eOSState ProcessKey(eKeys Key);
++  virtual const char* MenuKind() { return "MenuUnknown"; }
+   };
+ 
+ #endif //__OSDBASE_H
+diff -Nur vdr-1.7.35.orig/recording.h vdr-1.7.35/recording.h
+--- vdr-1.7.35.orig/recording.h	2013-01-06 14:17:16.297682526 +0100
++++ vdr-1.7.35/recording.h	2013-01-06 15:35:51.851149142 +0100
+@@ -68,6 +68,7 @@
+   const cEvent *GetEvent(void) const { return event; }
+   const char *Title(void) const { return event->Title(); }
+   const char *ShortText(void) const { return event->ShortText(); }
++  tEventID EventID(void) const { return event->EventID(); }
+   const char *Description(void) const { return event->Description(); }
+   const cComponents *Components(void) const { return event->Components(); }
+   const char *Aux(void) const { return aux; }
+diff -Nur vdr-1.7.35.orig/status.c vdr-1.7.35/status.c
+--- vdr-1.7.35.orig/status.c	2012-03-07 15:17:24.000000000 +0100
++++ vdr-1.7.35/status.c	2013-01-06 15:35:51.851149142 +0100
+@@ -124,3 +124,32 @@
+   for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
+       sm->OsdProgramme(PresentTime, PresentTitle, PresentSubtitle, FollowingTime, FollowingTitle, FollowingSubtitle);
+ }
++
++void cStatus::MsgOsdSetEvent(const cEvent* event)
++{
++  for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
++      sm->OsdSetEvent(event);
++}
++
++void cStatus::MsgOsdSetRecording(const cRecording* recording)
++{
++  for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
++      sm->OsdSetRecording(recording);
++}
++
++void cStatus::MsgOsdMenuDisplay(const char* kind)
++{
++  for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
++      sm->OsdMenuDisplay(kind);
++}
++
++void cStatus::MsgOsdMenuDestroy()
++{
++  for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
++      sm->OsdMenuDestroy();
++}
++void cStatus::MsgOsdEventItem(const cEvent* Event, const char *Text, int Index, int Count)
++{
++  for (cStatus *sm = statusMonitors.First(); sm; sm = statusMonitors.Next(sm))
++     sm->OsdEventItem(Event, Text, Index, Count);
++}
+diff -Nur vdr-1.7.35.orig/status.h vdr-1.7.35/status.h
+--- vdr-1.7.35.orig/status.h	2012-03-07 15:16:57.000000000 +0100
++++ vdr-1.7.35/status.h	2013-01-06 15:35:51.851149142 +0100
+@@ -81,6 +81,17 @@
+                // The OSD displays the single line Text with the current channel information.
+   virtual void OsdProgramme(time_t PresentTime, const char *PresentTitle, const char *PresentSubtitle, time_t FollowingTime, const char *FollowingTitle, const char *FollowingSubtitle) {}
+                // The OSD displays the given programme information.
++  virtual void OsdSetRecording(const cRecording* recording) {}
++               // The OSD displays the recording information.
++  virtual void OsdSetEvent(const cEvent* event) {}
++               // The OSD displays the event information.
++  virtual void OsdMenuDisplay(const char* kind) {}
++               // report menu creation
++  virtual void OsdMenuDestroy() {}
++               // report menu destruvtion
++  virtual void OsdEventItem(const cEvent* Event, const char *Text, int Index, int Count) {}
++               // The OSD displays the given single line Event as menu item at Index.
++
+ public:
+   cStatus(void);
+   virtual ~cStatus();
+@@ -102,6 +113,11 @@
+   static void MsgOsdTextItem(const char *Text,  bool Scroll = false);
+   static void MsgOsdChannel(const char *Text);
+   static void MsgOsdProgramme(time_t PresentTime, const char *PresentTitle, const char *PresentSubtitle, time_t FollowingTime, const char *FollowingTitle, const char *FollowingSubtitle);
++  static void MsgOsdSetEvent(const cEvent* event);
++  static void MsgOsdSetRecording(const cRecording* recording);
++  static void MsgOsdMenuDisplay(const char* kind);
++  static void MsgOsdMenuDestroy();
++  static void MsgOsdEventItem(const cEvent* Event, const char *Text, int Index, int Count);
+   };
+ 
+ #endif //__STATUS_H

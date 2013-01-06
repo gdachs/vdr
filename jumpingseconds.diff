@@ -1,0 +1,211 @@
+diff -Nur vdr-1.7.35.orig/config.c vdr-1.7.35/config.c
+--- vdr-1.7.35.orig/config.c	2013-01-06 15:47:15.614512393 +0100
++++ vdr-1.7.35/config.c	2013-01-06 16:08:44.707852451 +0100
+@@ -475,6 +475,8 @@
+   ChannelsWrap = 0;
+   ShowChannelNamesWithSource = 0;
+   EmergencyExit = 1;
++  JumpSeconds = 60;
++  JumpSecondsSlow = 10;
+ }
+ 
+ cSetup& cSetup::operator= (const cSetup &s)
+@@ -682,6 +684,8 @@
+   else if (!strcasecmp(Name, "ChannelsWrap"))        ChannelsWrap       = atoi(Value);
+   else if (!strcasecmp(Name, "ShowChannelNamesWithSource")) ShowChannelNamesWithSource = atoi(Value);
+   else if (!strcasecmp(Name, "EmergencyExit"))       EmergencyExit      = atoi(Value);
++  else if (!strcasecmp(Name, "JumpSeconds"))         JumpSeconds        = atoi(Value);
++  else if (!strcasecmp(Name, "JumpSecondsSlow"))     JumpSecondsSlow    = atoi(Value);
+   else
+      return false;
+   return true;
+@@ -792,6 +796,8 @@
+   Store("ChannelsWrap",       ChannelsWrap);
+   Store("ShowChannelNamesWithSource", ShowChannelNamesWithSource);
+   Store("EmergencyExit",      EmergencyExit);
++  Store("JumpSeconds",        JumpSeconds);
++  Store("JumpSecondsSlow",    JumpSecondsSlow);
+ 
+   Sort();
+ 
+diff -Nur vdr-1.7.35.orig/config.h vdr-1.7.35/config.h
+--- vdr-1.7.35.orig/config.h	2013-01-06 15:54:59.851117859 +0100
++++ vdr-1.7.35/config.h	2013-01-06 16:08:44.707852451 +0100
+@@ -342,6 +342,8 @@
+   int ChannelsWrap;
+   int ShowChannelNamesWithSource;
+   int EmergencyExit;
++  int JumpSeconds;
++  int JumpSecondsSlow;
+   int __EndData__;
+   cString InitialChannel;
+   cString DeviceBondings;
+diff -Nur vdr-1.7.35.orig/menu.c vdr-1.7.35/menu.c
+--- vdr-1.7.35.orig/menu.c	2013-01-06 16:02:54.891139559 +0100
++++ vdr-1.7.35/menu.c	2013-01-06 16:08:44.714520666 +0100
+@@ -3530,6 +3530,8 @@
+   Add(new cMenuEditBoolItem(tr("Setup.Replay$Jump&Play"), &data.JumpPlay));
+   Add(new cMenuEditBoolItem(tr("Setup.Replay$Play&Jump"), &data.PlayJump));
+   Add(new cMenuEditBoolItem(tr("Setup.Replay$Pause at last mark"), &data.PauseLastMark));
++  Add(new cMenuEditIntItem(tr("Setup.Replay$Jump Seconds"), &data.JumpSeconds));
++  Add(new cMenuEditIntItem(tr("Setup.Replay$Jump Seconds Slow"), &data.JumpSecondsSlow));
+ }
+ 
+ void cMenuSetupReplay::Store(void)
+@@ -5494,9 +5496,9 @@
+     case kRight:   Forward(); break;
+     case kRed:     TimeSearch(); break;
+     case kGreen|k_Repeat:
+-    case kGreen:   SkipSeconds(-60); break;
++    case kGreen:   SkipSeconds(-Setup.JumpSeconds); break;
+     case kYellow|k_Repeat:
+-    case kYellow:  SkipSeconds( 60); break;
++    case kYellow:  SkipSeconds(Setup.JumpSeconds); break;
+     case kPrev|k_Repeat:
+     case kPrev:    if (lastSkipTimeout.TimedOut()) {
+                       lastSkipSeconds = REPLAYCONTROLSKIPSECONDS;
+@@ -5543,7 +5545,7 @@
+                                   marks.Save();
+                                   }
+                                else
+-                                  SkipSeconds(-20);
++                                  SkipSeconds(-Setup.JumpSecondsSlow);
+                                break;
+         case k3|k_Repeat:
+         case k3:               if (GetReplayMode(play, forward, speed) && !play && GetIndex(Current, Total) && (m = marks.Get(Current)) != NULL) {
+@@ -5556,7 +5558,7 @@
+                                   marks.Save();
+                                   }
+                                else
+-                                  SkipSeconds(20);
++                                  SkipSeconds(Setup.JumpSecondsSlow);
+                                break;
+         case kMarkToggle:      if (GetReplayMode(play, forward, speed) && play) {
+                                   displayFrames = true;
+diff -Nur vdr-1.7.35.orig/menu.c.orig vdr-1.7.35/menu.c.orig
+--- vdr-1.7.35.orig/menu.c.orig	2013-01-06 15:54:59.851117859 +0100
++++ vdr-1.7.35/menu.c.orig	2013-01-06 16:02:54.891139559 +0100
+@@ -911,6 +911,16 @@
+      Add(new cMenuEditBitItem( tr("VPS"),          &data.flags, tfVps));
+      Add(new cMenuEditIntItem( tr("Priority"),     &data.priority, 0, MAXPRIORITY));
+      Add(new cMenuEditIntItem( tr("Lifetime"),     &data.lifetime, 0, MAXLIFETIME));
++
++     // PIN PATCH
++     if (cOsd::pinValid || !data.fskProtection) Add(new cMenuEditBoolItem(tr("Childlock"),&data.fskProtection));
++     else {
++        char* buf = 0;
++        asprintf(&buf, "%s\t%s", tr("Childlock"), data.fskProtection ? tr("yes") : tr("no"));
++        Add(new cOsdItem(buf));
++        free(buf);
++        }
++
+      Add(file = new cMenuEditStrItem( tr("File"),   data.file, sizeof(data.file)));
+      SetFirstDayItem();
+      }
+@@ -2626,7 +2636,10 @@
+   for (cRecording *recording = Recordings.First(); recording; recording = Recordings.Next(recording)) {
+       if (!base || (strstr(recording->Name(), base) == recording->Name() && recording->Name()[strlen(base)] == FOLDERDELIMCHAR)) {
+          cMenuRecordingItem *Item = new cMenuRecordingItem(recording, level);
+-         if (*Item->Text() && (!Item->IsDirectory() || (!LastItem || !LastItem->IsDirectory() || strcmp(Item->Text(), LastItemText) != 0))) {
++
++         if (*Item->Text() && (!Item->IsDirectory() || (!LastItem || !LastItem->IsDirectory() || strcmp(Item->Text(), LastItemText) != 0))
++            && (!cStatus::MsgReplayProtected(Item->Recording(), Item->Name(), base,
++                                             Item->IsDirectory(), true))) {              // PIN PATCH
+             Add(Item);
+             LastItem = Item;
+             free(LastItemText);
+@@ -2678,6 +2691,9 @@
+ {
+   cMenuRecordingItem *ri = (cMenuRecordingItem *)Get(Current());
+   if (ri) {
++     if (cStatus::MsgReplayProtected(ri->Recording(), ri->Name(), base,
++                                     ri->IsDirectory()) == true)    // PIN PATCH
++        return osContinue;                                          // PIN PATCH
+      if (ri->IsDirectory())
+         Open();
+      else {
+@@ -3794,28 +3810,32 @@
+ 
+   // Basic menu items:
+ 
+-  Add(new cOsdItem(hk(tr("Schedule")),   osSchedule));
+-  Add(new cOsdItem(hk(tr("Channels")),   osChannels));
+-  Add(new cOsdItem(hk(tr("Timers")),     osTimers));
+-  Add(new cOsdItem(hk(tr("Recordings")), osRecordings));
++  // PIN PATCH
++  if (!cStatus::MsgMenuItemProtected("Schedule", true))   Add(new cOsdItem(hk(tr("Schedule")),   osSchedule));
++  if (!cStatus::MsgMenuItemProtected("Channels", true))   Add(new cOsdItem(hk(tr("Channels")),   osChannels));
++  if (!cStatus::MsgMenuItemProtected("Timers", true))     Add(new cOsdItem(hk(tr("Timers")),     osTimers));
++  if (!cStatus::MsgMenuItemProtected("Recordings", true)) Add(new cOsdItem(hk(tr("Recordings")), osRecordings));
+ 
+   // Plugins:
+ 
+   for (int i = 0; ; i++) {
+       cPlugin *p = cPluginManager::GetPlugin(i);
+       if (p) {
++         if (!cStatus::MsgPluginProtected(p, true)) {          // PIN PATCH
+          const char *item = p->MainMenuEntry();
+          if (item)
+             Add(new cMenuPluginItem(hk(item), i));
+          }
++         }
+       else
+          break;
+       }
+ 
+   // More basic menu items:
+ 
+-  Add(new cOsdItem(hk(tr("Setup")),      osSetup));
++  if (!cStatus::MsgMenuItemProtected("Setup", true)) Add(new cOsdItem(hk(tr("Setup")), osSetup));  // PIN PATCH
+   if (Commands.Count())
++     if (!cStatus::MsgMenuItemProtected("Commands", true))     // PIN PATCH
+      Add(new cOsdItem(hk(tr("Commands")),  osCommands));
+ 
+   }
+@@ -3899,6 +3919,14 @@
+   eOSState state = cOsdMenu::ProcessKey(Key);
+   HadSubMenu |= HasSubMenu();
+ 
++  // > PIN PATCH
++  cOsdItem* item = Get(Current());
++
++  if (item && item->Text() && state != osContinue && state != osUnknown && state != osBack)
++     if (cStatus::MsgMenuItemProtected(item->Text()))
++        return osContinue;
++  // PIN PATCH <
++
+   cOsdObject *menu = NULL;
+   switch (state) {
+     case osSchedule:
+@@ -3951,6 +3979,7 @@
+                          if (item) {
+                             cPlugin *p = cPluginManager::GetPlugin(item->PluginIndex());
+                             if (p) {
++                               if (!cStatus::MsgPluginProtected(p)) {  // PIN PATCH
+                                cOsdObject *menu = p->MainMenuAction();
+                                if (menu) {
+                                   if (menu->IsMenu())
+@@ -3962,6 +3991,7 @@
+                                   }
+                                }
+                             }
++                         }
+                          state = osEnd;
+                        }
+                        break;
+@@ -4173,6 +4203,7 @@
+            Channel = Direction > 0 ? Channels.Next(Channel) : Channels.Prev(Channel);
+            if (!Channel && Setup.ChannelsWrap)
+               Channel = Direction > 0 ? Channels.First() : Channels.Last();
++           if (!cStatus::MsgChannelProtected(0, Channel))                   // PIN PATCH
+            if (Channel && !Channel->GroupSep() && cDevice::GetDevice(Channel, LIVEPRIORITY, true, true))
+               return Channel;
+            }
+@@ -4866,6 +4897,7 @@
+            for (int i = 0; i < MAXRECORDCONTROLS; i++) {
+                if (!RecordControls[i]) {
+                   RecordControls[i] = new cRecordControl(device, Timer, Pause);
++                  cStatus::MsgRecordingFile(RecordControls[i]->FileName());  // PIN PATCH
+                   return RecordControls[i]->Process(time(NULL));
+                   }
+                }

@@ -1,0 +1,87 @@
+diff -Nur vdr-1.7.35.orig/plugin.c vdr-1.7.35/plugin.c
+--- vdr-1.7.35.orig/plugin.c	2012-09-01 15:10:27.000000000 +0200
++++ vdr-1.7.35/plugin.c	2013-01-06 14:09:03.370897959 +0100
+@@ -176,6 +176,10 @@
+ 
+ // --- cDll ------------------------------------------------------------------
+ 
++#ifdef VDRDEBUG
++bool cDll::keepPlugins = false;
++#endif
++
+ cDll::cDll(const char *FileName, const char *Args)
+ {
+   fileName = strdup(FileName);
+@@ -187,8 +191,16 @@
+ cDll::~cDll()
+ {
+   delete plugin;
++#ifdef VDRDEBUG
++  if (!keepPlugins)
++  {
++    if (handle)
++       dlclose(handle);
++    }
++#else
+   if (handle)
+      dlclose(handle);
++#endif
+   free(args);
+   free(fileName);
+ }
+diff -Nur vdr-1.7.35.orig/plugin.h vdr-1.7.35/plugin.h
+--- vdr-1.7.35.orig/plugin.h	2012-09-01 15:08:54.000000000 +0200
++++ vdr-1.7.35/plugin.h	2013-01-06 14:09:03.370897959 +0100
+@@ -72,6 +72,9 @@
+   void *handle;
+   cPlugin *plugin;
+ public:
++  #ifdef VDRDEBUG
++  static bool keepPlugins;
++  #endif
+   cDll(const char *FileName, const char *Args);
+   virtual ~cDll();
+   bool Load(bool Log = false);
+diff -Nur vdr-1.7.35.orig/vdr.c vdr-1.7.35/vdr.c
+--- vdr-1.7.35.orig/vdr.c	2012-12-06 11:29:23.000000000 +0100
++++ vdr-1.7.35/vdr.c	2013-01-06 14:09:03.370897959 +0100
+@@ -234,6 +234,9 @@
+       { "grab",     required_argument, NULL, 'g' },
+       { "help",     no_argument,       NULL, 'h' },
+       { "instance", required_argument, NULL, 'i' },
++#ifdef VDRDEBUG
++      { "keep-plugins", no_argument,   NULL, 'k' },
++#endif
+       { "lib",      required_argument, NULL, 'L' },
+       { "lirc",     optional_argument, NULL, 'l' | 0x100 },
+       { "localedir",required_argument, NULL, 'l' | 0x200 },
+@@ -257,7 +260,7 @@
+     };
+ 
+   int c;
+-  while ((c = getopt_long(argc, argv, "a:c:dD:e:E:g:hi:l:L:mp:P:r:s:t:u:v:Vw:", long_options, NULL)) != -1) {
++  while ((c = getopt_long(argc, argv, "a:c:dD:e:E:g:hi:kl:L:mp:P:r:s:t:u:v:Vw:", long_options, NULL)) != -1) {
+         switch (c) {
+           case 'a': AudioCommand = optarg;
+                     break;
+@@ -301,6 +304,10 @@
+                        }
+                     fprintf(stderr, "vdr: invalid instance id: %s\n", optarg);
+                     return 2;
++#ifdef VDRDEBUG
++          case 'k': cDll::keepPlugins = true;
++                    break;
++#endif
+           case 'l': {
+                       char *p = strchr(optarg, '.');
+                       if (p)
+@@ -450,6 +457,9 @@
+                "                           or symlinks (default: none, same as -g-)\n"
+                "  -h,       --help         print this help and exit\n"
+                "  -i ID,    --instance=ID  use ID as the id of this VDR instance (default: 0)\n"
++#ifdef VDRDEBUG
++               "  -k        --keep-plugins Support valgrind by not unloading plugins\n"
++#endif
+                "  -l LEVEL, --log=LEVEL    set log level (default: 3)\n"
+                "                           0 = no logging, 1 = errors only,\n"
+                "                           2 = errors and info, 3 = errors, info and debug\n"
